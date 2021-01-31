@@ -1,0 +1,2 @@
+- Assignement 1
+- Vantage API for stocks

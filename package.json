@@ -1,0 +1,16 @@
+{
+  "name": "assignment-1",
+  "version": "1.0.0",
+  "description": "- Assignement 1 - Vantage API for stocks",
+  "main": "index.js",
+  "scripts": {
+    "dev":"parcel run index.html",
+    "build":"parcel build index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "parcel": "^1.12.4"
+  }
+}
