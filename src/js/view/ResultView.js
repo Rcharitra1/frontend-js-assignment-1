@@ -7,9 +7,10 @@ export const singleRecord =
 <div class="card-header">Symbol : <%= record.symbol %></div>
 <div class="card-body">
   <h5 class="card-title">Details</h5>
+  <p class="card-text"> Time : <%= record.time%></p>
   <p class="card-text"> Open: $<%= record.open.toFixed(2) %></p>
   <p class="card-text"> Close: $<%= record.close.toFixed(2) %></p>
-  <p class="card-text"> Diff: $<%= record.difference.toFixed(2) %></p>
+  <p class="card-text"> Diff: $<%= record.difference.toFixed(2)%> <i class="fas fa-arrow-<%= record.difference >= 0? "up" : "down" %>"></i></p>
 </div>
 </div>
 </div>`;
