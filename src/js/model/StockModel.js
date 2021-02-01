@@ -21,47 +21,61 @@ function StockModel()
         url = url + params;
 
         const req = await fetch(url);
-        const res = await req.json();
-        const timeSeries = res[`Time Series (${timeSlot})`];
-        const metaData = res['Meta Data'];
+        let res = await req.json();
+       
+        const error = Object.keys(res);
 
-        const stockDataDaily = Object.values(timeSeries);
-        const stockDataGeneral =Object.values(metaData);
-
-        
-    
-        
-
-        const FirstObjFromAPI =
+        if(error[0]==="Error Message")
         {
-            symbol : stockDataGeneral[1],
-            open : parseFloat(stockDataDaily[0]['1. open']),
-            close: parseFloat(stockDataDaily[0]['4. close']),
-            difference:'',
-            display:''
-        } 
-        FirstObjFromAPI.difference = FirstObjFromAPI.open - FirstObjFromAPI.close;
-        FirstObjFromAPI.display = (FirstObjFromAPI.difference <0? 'bg-success': 'bg-danger')
-        
-
-        let size = stockDataDaily.length;
-        size--;
-        const LastObjFromAPI =
-        {
-            symbol : stockDataGeneral[1],
-            open : parseFloat(stockDataDaily[size]['1. open']),
-            close: parseFloat(stockDataDaily[size]['4. close']),
-            difference: '',
-            display:''
-        } 
-
-        LastObjFromAPI.difference = LastObjFromAPI.open - LastObjFromAPI.close;
-        LastObjFromAPI.display = (LastObjFromAPI.difference<0 ? 'bg-success':'bg-danger')
-
+            res=null;
+        }
         let objArray = [];
-        objArray.push(FirstObjFromAPI);
-        objArray.push(LastObjFromAPI);
+        if(res !==null)
+        {
+            const timeSeries = res[`Time Series (${timeSlot})`];
+            const metaData = res['Meta Data'];
+    
+            const stockDataDaily = Object.values(timeSeries);
+            const stockDataGeneral =Object.values(metaData);
+    
+            
+        
+            
+    
+            const FirstObjFromAPI =
+            {
+                symbol : stockDataGeneral[1],
+                open : parseFloat(stockDataDaily[0]['1. open']),
+                close: parseFloat(stockDataDaily[0]['4. close']),
+                difference:'',
+                display:''
+            } 
+            FirstObjFromAPI.difference = FirstObjFromAPI.close - FirstObjFromAPI.open;
+            FirstObjFromAPI.display = (FirstObjFromAPI.difference >0? 'bg-success': 'bg-danger')
+            
+    
+            let size = stockDataDaily.length;
+            size--;
+            const LastObjFromAPI =
+            {
+                symbol : stockDataGeneral[1],
+                open : parseFloat(stockDataDaily[size]['1. open']),
+                close: parseFloat(stockDataDaily[size]['4. close']),
+                difference: '',
+                display:''
+            } 
+    
+            LastObjFromAPI.difference = LastObjFromAPI.close - LastObjFromAPI.open;
+            LastObjFromAPI.display = (LastObjFromAPI.difference>0 ? 'bg-success':'bg-danger')
+    
+            
+            objArray.push(FirstObjFromAPI);
+            objArray.push(LastObjFromAPI);
+            
+        }
+
         return objArray;
+    
 
     }
 

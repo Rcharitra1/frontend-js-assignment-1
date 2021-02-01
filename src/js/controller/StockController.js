@@ -6,7 +6,6 @@ function StockController(searchResults, resultsView, noResultView)
     
     this.searchResults = searchResults.then(res=> {
         let search = [...res];
-        console.log(search);
         this.displayInput(search);
 
     });
@@ -24,10 +23,11 @@ function StockController(searchResults, resultsView, noResultView)
     this.displayInput=function (search) 
     {
         this.removeChildElements();
-        if(search.length == 0)
+        
+        if(search.length===0)
         {
             const elem = ejs.render(this.noResultView);
-            this.document.insertAdjacentHTML('afterbegin', elem)
+            this.container.insertAdjacentHTML('afterbegin', elem)
         }else
         {
             let searchArray =[...search];
@@ -44,7 +44,12 @@ function StockController(searchResults, resultsView, noResultView)
 
     this.removeChildElements = function () 
     {
-        this.container.querySelectorAll('.card').forEach(item =>{
+        this.container.querySelectorAll('.col-6').forEach(item =>{
+            this.container.removeChild(item);
+        })
+
+        this.container.querySelectorAll('.alert')
+        .forEach(item=>{
             this.container.removeChild(item);
         })
     }

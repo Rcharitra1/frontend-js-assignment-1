@@ -16,7 +16,8 @@ function InputController(model)
             e.target.querySelector("input[type=text]").classList.add('is-invalid');
         }else
         {
-            e.target.querySelector("input[type=radio]:checked").classList.add('is-valid');
+            e.target.querySelector
+            e.target.querySelectorAll("input[type=radio]").forEach(x => x.classList.add('is-valid'));
             e.target.querySelector("input[type=text]").classList.add('is-valid');
     
             data ={
