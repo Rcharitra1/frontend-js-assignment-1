@@ -23,13 +23,29 @@ function StockModel()
         const req = await fetch(url);
         let res = await req.json();
        
-        const error = Object.keys(res);
+        console.log(Object.keys(res))
 
-        if(error[0]==="Error Message")
-        {
-            res=null;
-        }
+        // console.log(error);
         let objArray = [];
+        if(Object.keys(res).includes("Error Message") || Object.keys(res).includes("Note") || Object.keys(res).length===0){
+            
+            console.log(Object.values(res));
+            
+            if(Object.keys(res).includes("Note"))
+            {
+                let tooManyApiCalls = {
+
+                    error: Object.values(res)
+
+                }
+
+                objArray.push(tooManyApiCalls);
+                res = null;
+            }
+            res = null;
+        }
+        
+        
         if(res !==null)
         {
             const timeSeries = res[`Time Series (${timeSlot})`];

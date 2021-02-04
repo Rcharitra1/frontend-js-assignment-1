@@ -23,4 +23,10 @@ No Results found!
 </div>`
 
 
+export const maxLimit =
+
+`<div class="alert alert-danger" role="alert">
+<%= tooManyApiCalls.error %>
+</div>`
+
 

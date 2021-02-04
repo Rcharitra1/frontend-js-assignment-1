@@ -1,5 +1,5 @@
 import ejs from 'ejs';
-function StockController(searchResults, resultsView, noResultView)
+function StockController(searchResults, resultsView, noResultView, maxLimit)
 {
 
     
@@ -11,6 +11,7 @@ function StockController(searchResults, resultsView, noResultView)
     });
     this.resultsView = resultsView;
     this.noResultView = noResultView;
+    this.maxLimit = maxLimit;
     this.container = document.querySelector(".results");
 
 
@@ -26,9 +27,20 @@ function StockController(searchResults, resultsView, noResultView)
         
         if(search.length===0)
         {
+    
             const elem = ejs.render(this.noResultView);
-            this.container.insertAdjacentHTML('afterbegin', elem)
-        }else
+            this.container.insertAdjacentHTML('afterbegin', elem);
+        }
+        else if(search.length==1)
+        {
+            
+            let tooManyApiCalls = search[0];
+
+            console.log(tooManyApiCalls)
+            const elem = ejs.render(this.maxLimit, {tooManyApiCalls : tooManyApiCalls});
+            this.container.insertAdjacentHTML('afterbegin', elem);
+        }
+        else
         {
             let searchArray =[...search];
 
