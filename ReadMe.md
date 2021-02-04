@@ -7,7 +7,7 @@
     key is required
     - This program uses bootstrap for styling
     - This program uses parcel for bundling
-    - Cntrollers 
+    - Controllers 
         - Input controller controls and validates data
         - Stock controller validates and generates view
 
