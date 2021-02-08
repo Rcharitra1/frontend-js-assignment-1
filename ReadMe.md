@@ -1,4 +1,4 @@
-- Assignement 1
+# Assignement 1
 - Vantage API for stocks
 
 - Usage
